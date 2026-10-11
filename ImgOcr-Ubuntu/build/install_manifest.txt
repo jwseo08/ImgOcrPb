@@ -1,0 +1,7 @@
+/tmp/imgocr-simple-cli-dceijq7v/installed/bin/imgocr
+/tmp/imgocr-simple-cli-dceijq7v/installed/share/imgocr/config.ini
+/tmp/imgocr-simple-cli-dceijq7v/installed/share/imgocr/id_card_templates.json
+/tmp/imgocr-simple-cli-dceijq7v/installed/share/imgocr/models/rec.onnx
+/tmp/imgocr-simple-cli-dceijq7v/installed/share/imgocr/models/dict.yml
+/tmp/imgocr-simple-cli-dceijq7v/installed/share/imgocr/models/det.onnx
+/tmp/imgocr-simple-cli-dceijq7v/installed/share/doc/ImgOcr/third_party/nlohmann/LICENSE.MIT

@@ -1,0 +1,217 @@
+{
+  "fieldPresets": {
+    "document_type": {
+      "displayName": "신분증 종류"
+    },
+    "name": {
+      "displayName": "성명",
+      "validation": "KoreanName",
+      "labelAliases": ["성명","이름"],
+      "valuePattern": "^([^()]+)(?:\\([^()]*\\)?|\\))?$",
+      "selection": {
+        "matchText": "RemoveWhitespace"
+      }
+    },
+    "resident_number": {
+      "displayName": "주민등록번호",
+      "validation": "ResidentRegistrationNumber",
+      "labelAliases": ["주민등록번호","등록번호"],
+      "valuePattern": "(\\d{6}\\s*-?\\s*\\d{7})",
+      "selection": {
+        "matchText": "RemoveWhitespace"
+      }
+    },
+    "address": {
+      "displayName": "주소",
+      "separator": " ",
+      "labelAliases": ["주소"],
+      "selection": {
+        "mode": "All",
+        "textPattern": "^(?:서울|부산|대구|인천|광주|대전|울산|세종|경기|강원|충청|전라|경상|제주).*|^.*(?:로|길|동|리|번지)\\s*[0-9].*|^\\(?[0-9]+(?:동|호).*$|^\\([^(),]+(?:동|리)(?:,\\s*[^()]+)?\\)$"
+      }
+    },
+    "date": {
+      "displayName": "날짜",
+      "validation": "Date",
+      "valuePattern": "(\\d{4}[.\\-/]\\d{1,2}[.\\-/]\\d{1,2}\\.?)",
+      "selection": {
+        "matchText": "RemoveWhitespace"
+      }
+    },
+    "issuer": {
+      "displayName": "발행자",
+      "labelAliases": ["발행자","발급기관"],
+      "valuePattern": "(?:\\d{4}\\s*[.\\-/]\\s*\\d{1,2}\\s*[.\\-/]\\s*\\d{1,2}\\.?\\s*)?([^0-9]+(?:청장|시장|군수))"
+    }
+  },
+  "templates": [
+    {
+      "id": "resident_registration_card",
+      "displayName": "주민등록증",
+      "titleKeywords": ["주민등록증"],
+      "minimumLineCount": 5,
+      "fields": [
+        {
+          "use": "document_type",
+          "fixedValue": "주민등록증",
+          "selection": {
+            "anchorTexts": ["주민등록증"]
+          }
+        },
+        {
+          "use": "name",
+          "selection": {
+            "afterField": "document_type",
+            "beforeField": "resident_number"
+          }
+        },
+        {
+          "use": "resident_number"
+        },
+        {
+          "use": "address",
+          "selection": {
+            "afterField": "resident_number",
+            "beforeField": "issue_date"
+          }
+        },
+        {
+          "use": "date",
+          "key": "issue_date",
+          "displayName": "발행일자",
+          "labelAliases": ["발행일자","발급일","발행일"],
+          "selection": {
+            "searchRegion": [0,0.7,1,0.3]
+          }
+        },
+        {
+          "use": "issuer",
+          "selection": {
+            "searchRegion": [0,0.7,1,0.3]
+          }
+        }
+      ],
+      "excludeRegions": [
+        {
+          "name": "test_mark",
+          "rect": [0,0,1,1],
+          "textPattern": "^(?:SAMPLE|Sample|sample|SPECIMEN|TEST|견본|샘플|테스트용)(?:\\s+[A-Za-z0-9_-]+)*$"
+        }
+      ]
+    },
+    {
+      "id": "driver_license",
+      "displayName": "자동차운전면허증",
+      "titleKeywords": ["자동차운전면허증","Driver License"],
+      "expectedTitleLineIndex": 1,
+      "minimumLineCount": 7,
+      "fields": [
+        {
+          "key": "license_type",
+          "displayName": "면허 종류",
+          "labelAliases": ["면허 종류","면허종류"],
+          "valuePattern": "((?:[12]\\s*종\\s*(?:보통|대형|소형|특수)|원동기장치자전거))",
+          "selection": {
+            "beforeField": "document_type"
+          }
+        },
+        {
+          "use": "document_type",
+          "fixedValue": "자동차운전면허증(Driver License)",
+          "selection": {
+            "anchorTexts": ["자동차운전면허증","Driver License"]
+          }
+        },
+        {
+          "key": "license_number",
+          "displayName": "운전면허등록번호",
+          "validation": "DriverLicenseNumber",
+          "labelAliases": ["운전면허등록번호","면허번호"],
+          "valuePattern": "(\\d{2}\\s*-\\s*\\d{2}\\s*-\\s*\\d{6}\\s*-\\s*\\d{2})",
+          "selection": {
+            "beforeField": "resident_number",
+            "matchText": "RemoveWhitespace"
+          }
+        },
+        {
+          "use": "name",
+          "selection": {
+            "afterField": "license_number",
+            "beforeField": "resident_number"
+          }
+        },
+        {
+          "use": "resident_number"
+        },
+        {
+          "use": "address",
+          "selection": {
+            "afterField": "resident_number",
+            "beforeField": "aptitude_test_start_date"
+          }
+        },
+        {
+          "use": "date",
+          "key": "aptitude_test_start_date",
+          "displayName": "적성검사 시작일",
+          "labelAliases": ["적성검사"],
+          "selection": {
+            "mode": "Occurrence",
+            "searchRegion": [0,0.5,1,0.35],
+            "afterField": "resident_number",
+            "beforeField": "issue_date",
+            "expectedMatchCount": 2
+          }
+        },
+        {
+          "use": "date",
+          "key": "aptitude_test_end_date",
+          "displayName": "적성검사 종료일",
+          "labelAliases": ["기간","기 간"],
+          "selection": {
+            "mode": "Occurrence",
+            "searchRegion": [0,0.5,1,0.35],
+            "afterField": "resident_number",
+            "beforeField": "issue_date",
+            "expectedMatchCount": 2,
+            "matchIndex": 1,
+            "notBeforeField": "aptitude_test_start_date"
+          }
+        },
+        {
+          "use": "date",
+          "key": "issue_date",
+          "displayName": "발행일자",
+          "labelAliases": ["발행일자","발급일","발행일"],
+          "selection": {
+            "searchRegion": [0,0.85,1,0.15]
+          }
+        },
+        {
+          "use": "issuer",
+          "selection": {
+            "searchRegion": [0,0.85,1,0.15]
+          }
+        }
+      ],
+      "excludeRegions": [
+        {
+          "name": "test_mark",
+          "rect": [0,0,1,1],
+          "textPattern": "^(?:SAMPLE|Sample|sample|SPECIMEN|TEST|견본|샘플|테스트용)(?:\\s+[A-Za-z0-9_-]+)*$"
+        },
+        {
+          "name": "stamp_or_barcode",
+          "rect": [0.86,0.8,0.14,0.2],
+          "minOverlapRatio": 0.3
+        },
+        {
+          "name": "auxiliary_code",
+          "rect": [0.85,0.73,0.15,0.08],
+          "textPattern": "^[A-Z0-9]{6,10}$",
+          "matchText": "RemoveWhitespace"
+        }
+      ]
+    }
+  ]
+}
