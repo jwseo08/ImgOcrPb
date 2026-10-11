@@ -6,7 +6,7 @@
 
 **Windows 버전은 Visual Studio 2022와 MFC를 이용한 GUI 프로그램**, **Linux 버전은 WSL Ubuntu 환경에서 Visual Studio Code를 사용하여 개발한 CLI 프로그램**입니다. 핵심 처리의 역할과 모델 및 템플릿 형식은 공통입니다.
 
-텍스트 검출과 인식에는 **PaddleOCR의 검출 모델과 인식 모델을 사용**했습니다. PaddleOCR 라이브러리를 프로그램에서 직접 호출하지 않으며 **모델을 ONNX 형식으로 변환한 뒤 C++에서 ONNX Runtime으로 추론**하는 구조입니다. Windows와 Linux에서 같은 모델 파일을 사용하기 위해 ONNX 형식을 선택했습니다. 실행 프로그램, OpenCV, ONNX Runtime 라이브러리는 각 운영체제에 맞게 별도로 빌드했습니다.
+텍스트 검출과 인식에는 **PaddleOCR의 검출 모델과 인식 모델을 사용**했습니다. PaddleOCR 라이브러리를 프로그램에서 사용하지 않으며 **모델을 ONNX 형식으로 변환한 뒤 C++에서 ONNX Runtime으로 추론**하는 구조입니다. Windows와 Linux에서 같은 모델 파일을 사용하기 위해 ONNX 형식을 선택했습니다. 실행 프로그램, OpenCV, ONNX Runtime 라이브러리는 각 운영체제에 맞게 별도로 빌드했습니다.
 
 모델 출처: [PaddleOCR 공식 GitHub 저장소 (PaddlePaddle/PaddleOCR)](https://github.com/PaddlePaddle/PaddleOCR) 본 프로젝트는 해당 프로젝트의 검출·인식 모델을 ONNX로 변환하여 사용하며, PaddleOCR 라이브러리 의존성은 없습니다.
 
