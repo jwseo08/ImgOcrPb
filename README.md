@@ -4,7 +4,7 @@
 
 신분증 이미지에서 글자를 검출·인식하고, JSON 템플릿에 정의한 규칙으로 성명, 등록번호, 주소, 발행일자 등의 필드를 추출하는 C++17 프로젝트입니다. 이미지 입력부터 전처리, 모델 추론, 문자 디코딩, 필드 추출·검증까지의 처리 과정을 구현했습니다.
 
-**Windows 버전은 Visual Studio 2022와 MFC를 사용하는 GUI 프로그램**, **Linux 버전은 WSL Ubuntu 환경에서 Visual Studio Code를 사용하여 개발한 CLI 프로그램**입니다. 핵심 처리의 역할과 모델 및 템플릿 형식은 공통입니다.
+**Windows 버전은 Visual Studio 2022와 MFC를 이용한 GUI 프로그램**, **Linux 버전은 WSL Ubuntu 환경에서 Visual Studio Code를 사용하여 개발한 CLI 프로그램**입니다. 핵심 처리의 역할과 모델 및 템플릿 형식은 공통입니다.
 
 텍스트 검출과 인식에는 **PaddleOCR의 검출 모델과 인식 모델을 사용**했습니다. PaddleOCR 라이브러리를 프로그램에서 직접 호출하지 않으며 **모델을 ONNX 형식으로 변환한 뒤 C++에서 ONNX Runtime으로 추론**하는 구조입니다. Windows와 Linux에서 같은 모델 파일을 사용하기 위해 ONNX 형식을 선택했습니다. 실행 프로그램, OpenCV, ONNX Runtime 라이브러리는 각 운영체제에 맞게 별도로 빌드했습니다.
 
