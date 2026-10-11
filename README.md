@@ -110,6 +110,19 @@ Windows에서는 **찾기** 버튼으로 `test-image/`의 이미지를 선택합
 
 Linux 버전은 VS Code에서 소스를 편집하고 WSL Ubuntu의 GCC·CMake·Make로 빌드하는 구성이며, CLI 형식으로 실행합니다. Linux 빌드 환경은 C++17 지원 컴파일러, CMake 3.20 이상, make로 구성되어 있습니다.
 
+C++ 신분증 OCR 프로그램의 Windows 및 Ubuntu 실행 패키지입니다.
+
+## 실행 파일 다운로드
+- ImgOcr-Windows-Exe.zip: Windows x64 실행 파일, 모델 및 설정 파일
+- ImgOcr-Ubuntu-Bin.zip: Ubuntu x86_64 실행 파일, 모델 및 설정 파일
+
+### 실행 환경
+- Windows: 필요한 DLL과 Visual C++·MFC 런타임이 필요합니다.
+- Ubuntu: 호환되는 OpenCV 및 ONNX Runtime 공유 라이브러리가 필요합니다.
+
+압축 해제 시 폴더 구조를 유지하십시오.
+사용 방법과 테스트 이미지 안내는 저장소의 README를 참고하십시오.
+
 ## Windows 빌드 및 실행
 
 ### 1. 개발 도구와 라이브러리 준비
