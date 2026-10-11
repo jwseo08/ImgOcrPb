@@ -113,8 +113,9 @@ Linux 버전은 VS Code에서 소스를 편집하고 WSL Ubuntu의 GCC·CMake·M
 C++ 신분증 OCR 프로그램의 Windows 및 Ubuntu 실행 패키지입니다.
 
 ## 실행 파일 다운로드
-- ImgOcr-Windows-Exe.zip: Windows x64 실행 파일, 모델 및 설정 파일
-- ImgOcr-Ubuntu-Bin.zip: Ubuntu x86_64 실행 파일, 모델 및 설정 파일
+
+- [ImgOcr-Windows-Exe.zip](https://github.com/jwseo08/ImgOcrPb/releases/download/v1.0.0/ImgOcr-Windows-Exe.zip): Windows x64 실행 파일, 모델 및 설정 파일
+- [ImgOcr-Ubuntu-Bin.zip](https://github.com/jwseo08/ImgOcrPb/releases/download/v1.0.0/ImgOcr-Ubuntu-Bin.zip): Ubuntu x86_64 실행 파일, 모델 및 설정 파일
 
 ### 실행 환경
 - Windows: 필요한 DLL과 Visual C++·MFC 런타임이 필요합니다.
